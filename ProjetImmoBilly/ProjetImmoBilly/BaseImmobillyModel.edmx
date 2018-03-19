@@ -1,0 +1,941 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Immobilly_Groupe_SolveigModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACHETEURS">
+          <Key>
+            <PropertyRef Name="NUMERO_ACHETEUR" />
+          </Key>
+          <Property Name="NUMERO_ACHETEUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUMERO_VILLE" Type="int" Nullable="false" />
+          <Property Name="NUMERO_COMMERCIAL" Type="int" Nullable="false" />
+          <Property Name="NOM_ACHETEUR" Type="text" Nullable="false" />
+          <Property Name="PRENOM_ACHETEUR" Type="text" Nullable="false" />
+          <Property Name="ADRESSE_ACHETEUR" Type="text" Nullable="false" />
+          <Property Name="TELEPHONE_PRINCIPAL_ACHETEUR" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TELEPHONE_SECONDAIRE_ACHETEUR" Type="char" MaxLength="10" />
+          <Property Name="EMAIL_ACHETEUR" Type="text" />
+        </EntityType>
+        <EntityType Name="BIENS">
+          <Key>
+            <PropertyRef Name="NUMERO_BIEN" />
+          </Key>
+          <Property Name="NUMERO_BIEN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUMERO_VILLE" Type="int" Nullable="false" />
+          <Property Name="NUMERO_VENDEUR" Type="int" Nullable="false" />
+          <Property Name="NUMERO_STATUT_BIEN" Type="smallint" Nullable="false" />
+          <Property Name="SURFACE_HABITABLE" Type="int" Nullable="false" />
+          <Property Name="SURFACE_PARCELLE" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_PIECE" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_CHAMBRE" Type="int" />
+          <Property Name="NOMBRE_SDB" Type="int" />
+          <Property Name="GARAGE" Type="bit" />
+          <Property Name="CAVE" Type="bit" />
+          <Property Name="PRIX_VENTE" Type="int" Nullable="false" />
+          <Property Name="ADRESSE_BIEN" Type="text" Nullable="false" />
+          <Property Name="DATE_MISE_EN_VENTE" Type="datetime" />
+          <Property Name="COMMENTAIRE" Type="text" />
+        </EntityType>
+        <EntityType Name="COMMERCIAUX">
+          <Key>
+            <PropertyRef Name="NUMERO_COMMERCIAL" />
+          </Key>
+          <Property Name="NUMERO_COMMERCIAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUMERO_STATUT_COMMERCIAL" Type="smallint" Nullable="false" />
+          <Property Name="NOM_COMMERCIAL" Type="text" Nullable="false" />
+          <Property Name="PRENOM_COMMERCIAL" Type="text" Nullable="false" />
+          <Property Name="TELEPHONE_MOBILE_PRO" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TELEPHONE_PRIVE" Type="char" MaxLength="10" />
+          <Property Name="EMAIL_COMMERCIAL" Type="text" Nullable="false" />
+          <Property Name="LOGIN" Type="char" MaxLength="32" />
+          <Property Name="PASS" Type="char" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="PROPOSITIONS">
+          <Key>
+            <PropertyRef Name="NUMERO_PROPOSITION" />
+          </Key>
+          <Property Name="NUMERO_PROPOSITION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUMERO_SOUHAIT" Type="int" Nullable="false" />
+          <Property Name="NUMERO_BIEN" Type="int" Nullable="false" />
+          <Property Name="DATE_PROPOSITION_VISITE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SOUHAITS">
+          <Key>
+            <PropertyRef Name="NUMERO_SOUHAIT" />
+          </Key>
+          <Property Name="NUMERO_SOUHAIT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUMERO_ACHETEUR" Type="int" Nullable="false" />
+          <Property Name="NUMERO_VILLE" Type="int" Nullable="false" />
+          <Property Name="NUMERO_STATUT_SOUHAIT" Type="smallint" Nullable="false" />
+          <Property Name="SURFACE_HABITABLE_MINIMALE" Type="int" />
+          <Property Name="SURFACE_PARCELLE_MINIMALE" Type="int" />
+          <Property Name="NOMBRE_PIECE_MINIMALE" Type="int" Nullable="false" />
+          <Property Name="PRIX_MAXIMAL" Type="int" Nullable="false" />
+          <Property Name="NBCHAMBREMINI" Type="smallint" />
+          <Property Name="NBSDBMINI" Type="smallint" />
+        </EntityType>
+        <EntityType Name="STATUT_BIEN">
+          <Key>
+            <PropertyRef Name="NUMERO_STATUT_BIEN" />
+          </Key>
+          <Property Name="NUMERO_STATUT_BIEN" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_STATUT_BIEN" Type="char" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STATUT_COMMERCIAUX">
+          <Key>
+            <PropertyRef Name="NUMERO_STATUT_COMMERCIAL" />
+          </Key>
+          <Property Name="NUMERO_STATUT_COMMERCIAL" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_STATUT_COMMERCIAUX" Type="char" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STATUT_SOUHAIT">
+          <Key>
+            <PropertyRef Name="NUMERO_STATUT_SOUHAIT" />
+          </Key>
+          <Property Name="NUMERO_STATUT_SOUHAIT" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_STATUT_SOUHAIT" Type="char" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENDEURS">
+          <Key>
+            <PropertyRef Name="NUMERO_VENDEUR" />
+          </Key>
+          <Property Name="NUMERO_VENDEUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUMERO_VILLE" Type="int" Nullable="false" />
+          <Property Name="NOM_VENDEUR" Type="text" Nullable="false" />
+          <Property Name="PRENOM_VENDEUR" Type="text" Nullable="false" />
+          <Property Name="ADRESSE_VENDEUR" Type="text" Nullable="false" />
+          <Property Name="TELEPHONE_MOBILE_VENDEUR" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TELEPHONE_FIXE_VENDEUR" Type="char" MaxLength="10" />
+          <Property Name="EMAIL_VENDEUR" Type="text" />
+        </EntityType>
+        <EntityType Name="VILLES">
+          <Key>
+            <PropertyRef Name="NUMERO_VILLE" />
+          </Key>
+          <Property Name="NUMERO_VILLE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_VILLE" Type="text" Nullable="false" />
+          <Property Name="CODE_POSTAL_VILLE" Type="char" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VISITES">
+          <Key>
+            <PropertyRef Name="NUMERO_VISITE" />
+          </Key>
+          <Property Name="NUMERO_VISITE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUMERO_PROPOSITION" Type="int" Nullable="false" />
+          <Property Name="DATE_VISITE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Immobilly_Groupe_Solveig.dbo.vueVisite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="vueVisite">
+          <Key>
+            <PropertyRef Name="NUMERO_BIEN" />
+            <PropertyRef Name="DATE_PROPOSITION_VISITE" />
+            <PropertyRef Name="bienVisite" />
+          </Key>
+          <Property Name="acheteur" Type="varchar" MaxLength="61" />
+          <Property Name="commercial" Type="varchar" MaxLength="61" />
+          <Property Name="NUMERO_BIEN" Type="int" Nullable="false" />
+          <Property Name="villeBien" Type="varchar" MaxLength="38" />
+          <Property Name="DATE_PROPOSITION_VISITE" Type="datetime" Nullable="false" />
+          <Property Name="bienVisite" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="DATE_VISITE" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_ACHETEURS_COMMERCIAUX">
+          <End Role="COMMERCIAUX" Type="Self.COMMERCIAUX" Multiplicity="1" />
+          <End Role="ACHETEURS" Type="Self.ACHETEURS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMERCIAUX">
+              <PropertyRef Name="NUMERO_COMMERCIAL" />
+            </Principal>
+            <Dependent Role="ACHETEURS">
+              <PropertyRef Name="NUMERO_COMMERCIAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ACHETEURS_VILLES">
+          <End Role="VILLES" Type="Self.VILLES" Multiplicity="1" />
+          <End Role="ACHETEURS" Type="Self.ACHETEURS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VILLES">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Principal>
+            <Dependent Role="ACHETEURS">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENS_STATUT_BIEN">
+          <End Role="STATUT_BIEN" Type="Self.STATUT_BIEN" Multiplicity="1" />
+          <End Role="BIENS" Type="Self.BIENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUT_BIEN">
+              <PropertyRef Name="NUMERO_STATUT_BIEN" />
+            </Principal>
+            <Dependent Role="BIENS">
+              <PropertyRef Name="NUMERO_STATUT_BIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENS_VENDEURS">
+          <End Role="VENDEURS" Type="Self.VENDEURS" Multiplicity="1" />
+          <End Role="BIENS" Type="Self.BIENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENDEURS">
+              <PropertyRef Name="NUMERO_VENDEUR" />
+            </Principal>
+            <Dependent Role="BIENS">
+              <PropertyRef Name="NUMERO_VENDEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENS_VILLES">
+          <End Role="VILLES" Type="Self.VILLES" Multiplicity="1" />
+          <End Role="BIENS" Type="Self.BIENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VILLES">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Principal>
+            <Dependent Role="BIENS">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMERCIAUX_STATUT_COMMERCIAUX">
+          <End Role="STATUT_COMMERCIAUX" Type="Self.STATUT_COMMERCIAUX" Multiplicity="1" />
+          <End Role="COMMERCIAUX" Type="Self.COMMERCIAUX" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUT_COMMERCIAUX">
+              <PropertyRef Name="NUMERO_STATUT_COMMERCIAL" />
+            </Principal>
+            <Dependent Role="COMMERCIAUX">
+              <PropertyRef Name="NUMERO_STATUT_COMMERCIAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROPOSITIONS_BIENS">
+          <End Role="BIENS" Type="Self.BIENS" Multiplicity="1" />
+          <End Role="PROPOSITIONS" Type="Self.PROPOSITIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BIENS">
+              <PropertyRef Name="NUMERO_BIEN" />
+            </Principal>
+            <Dependent Role="PROPOSITIONS">
+              <PropertyRef Name="NUMERO_BIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROPOSITIONS_SOUHAITS">
+          <End Role="SOUHAITS" Type="Self.SOUHAITS" Multiplicity="1" />
+          <End Role="PROPOSITIONS" Type="Self.PROPOSITIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOUHAITS">
+              <PropertyRef Name="NUMERO_SOUHAIT" />
+            </Principal>
+            <Dependent Role="PROPOSITIONS">
+              <PropertyRef Name="NUMERO_SOUHAIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOUHAITS_ACHETEURS">
+          <End Role="ACHETEURS" Type="Self.ACHETEURS" Multiplicity="1" />
+          <End Role="SOUHAITS" Type="Self.SOUHAITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACHETEURS">
+              <PropertyRef Name="NUMERO_ACHETEUR" />
+            </Principal>
+            <Dependent Role="SOUHAITS">
+              <PropertyRef Name="NUMERO_ACHETEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOUHAITS_STATUT_SOUHAIT">
+          <End Role="STATUT_SOUHAIT" Type="Self.STATUT_SOUHAIT" Multiplicity="1" />
+          <End Role="SOUHAITS" Type="Self.SOUHAITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUT_SOUHAIT">
+              <PropertyRef Name="NUMERO_STATUT_SOUHAIT" />
+            </Principal>
+            <Dependent Role="SOUHAITS">
+              <PropertyRef Name="NUMERO_STATUT_SOUHAIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOUHAITS_VILLES">
+          <End Role="VILLES" Type="Self.VILLES" Multiplicity="1" />
+          <End Role="SOUHAITS" Type="Self.SOUHAITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VILLES">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Principal>
+            <Dependent Role="SOUHAITS">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENDEURS_VILLES">
+          <End Role="VILLES" Type="Self.VILLES" Multiplicity="1" />
+          <End Role="VENDEURS" Type="Self.VENDEURS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VILLES">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Principal>
+            <Dependent Role="VENDEURS">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VISITES_PROPOSITIONS">
+          <End Role="PROPOSITIONS" Type="Self.PROPOSITIONS" Multiplicity="1" />
+          <End Role="VISITES" Type="Self.VISITES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROPOSITIONS">
+              <PropertyRef Name="NUMERO_PROPOSITION" />
+            </Principal>
+            <Dependent Role="VISITES">
+              <PropertyRef Name="NUMERO_PROPOSITION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Immobilly_Groupe_SolveigModelStoreContainer">
+          <EntitySet Name="ACHETEURS" EntityType="Self.ACHETEURS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BIENS" EntityType="Self.BIENS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMMERCIAUX" EntityType="Self.COMMERCIAUX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROPOSITIONS" EntityType="Self.PROPOSITIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SOUHAITS" EntityType="Self.SOUHAITS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATUT_BIEN" EntityType="Self.STATUT_BIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATUT_COMMERCIAUX" EntityType="Self.STATUT_COMMERCIAUX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATUT_SOUHAIT" EntityType="Self.STATUT_SOUHAIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VENDEURS" EntityType="Self.VENDEURS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VILLES" EntityType="Self.VILLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VISITES" EntityType="Self.VISITES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vueVisite" EntityType="Self.vueVisite" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vueVisite].[acheteur] AS [acheteur], 
+    [vueVisite].[commercial] AS [commercial], 
+    [vueVisite].[NUMERO_BIEN] AS [NUMERO_BIEN], 
+    [vueVisite].[villeBien] AS [villeBien], 
+    [vueVisite].[DATE_PROPOSITION_VISITE] AS [DATE_PROPOSITION_VISITE], 
+    [vueVisite].[bienVisite] AS [bienVisite], 
+    [vueVisite].[DATE_VISITE] AS [DATE_VISITE]
+    FROM [dbo].[vueVisite] AS [vueVisite]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ACHETEURS_COMMERCIAUX" Association="Self.FK_ACHETEURS_COMMERCIAUX">
+            <End Role="COMMERCIAUX" EntitySet="COMMERCIAUX" />
+            <End Role="ACHETEURS" EntitySet="ACHETEURS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ACHETEURS_VILLES" Association="Self.FK_ACHETEURS_VILLES">
+            <End Role="VILLES" EntitySet="VILLES" />
+            <End Role="ACHETEURS" EntitySet="ACHETEURS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENS_STATUT_BIEN" Association="Self.FK_BIENS_STATUT_BIEN">
+            <End Role="STATUT_BIEN" EntitySet="STATUT_BIEN" />
+            <End Role="BIENS" EntitySet="BIENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENS_VENDEURS" Association="Self.FK_BIENS_VENDEURS">
+            <End Role="VENDEURS" EntitySet="VENDEURS" />
+            <End Role="BIENS" EntitySet="BIENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENS_VILLES" Association="Self.FK_BIENS_VILLES">
+            <End Role="VILLES" EntitySet="VILLES" />
+            <End Role="BIENS" EntitySet="BIENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMERCIAUX_STATUT_COMMERCIAUX" Association="Self.FK_COMMERCIAUX_STATUT_COMMERCIAUX">
+            <End Role="STATUT_COMMERCIAUX" EntitySet="STATUT_COMMERCIAUX" />
+            <End Role="COMMERCIAUX" EntitySet="COMMERCIAUX" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPOSITIONS_BIENS" Association="Self.FK_PROPOSITIONS_BIENS">
+            <End Role="BIENS" EntitySet="BIENS" />
+            <End Role="PROPOSITIONS" EntitySet="PROPOSITIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPOSITIONS_SOUHAITS" Association="Self.FK_PROPOSITIONS_SOUHAITS">
+            <End Role="SOUHAITS" EntitySet="SOUHAITS" />
+            <End Role="PROPOSITIONS" EntitySet="PROPOSITIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOUHAITS_ACHETEURS" Association="Self.FK_SOUHAITS_ACHETEURS">
+            <End Role="ACHETEURS" EntitySet="ACHETEURS" />
+            <End Role="SOUHAITS" EntitySet="SOUHAITS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOUHAITS_STATUT_SOUHAIT" Association="Self.FK_SOUHAITS_STATUT_SOUHAIT">
+            <End Role="STATUT_SOUHAIT" EntitySet="STATUT_SOUHAIT" />
+            <End Role="SOUHAITS" EntitySet="SOUHAITS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOUHAITS_VILLES" Association="Self.FK_SOUHAITS_VILLES">
+            <End Role="VILLES" EntitySet="VILLES" />
+            <End Role="SOUHAITS" EntitySet="SOUHAITS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENDEURS_VILLES" Association="Self.FK_VENDEURS_VILLES">
+            <End Role="VILLES" EntitySet="VILLES" />
+            <End Role="VENDEURS" EntitySet="VENDEURS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VISITES_PROPOSITIONS" Association="Self.FK_VISITES_PROPOSITIONS">
+            <End Role="PROPOSITIONS" EntitySet="PROPOSITIONS" />
+            <End Role="VISITES" EntitySet="VISITES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Immobilly_Groupe_SolveigModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACHETEURS">
+          <Key>
+            <PropertyRef Name="NUMERO_ACHETEUR" />
+          </Key>
+          <Property Name="NUMERO_ACHETEUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUMERO_VILLE" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_COMMERCIAL" Type="Int32" Nullable="false" />
+          <Property Name="NOM_ACHETEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENOM_ACHETEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADRESSE_ACHETEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE_PRINCIPAL_ACHETEUR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE_SECONDAIRE_ACHETEUR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="EMAIL_ACHETEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COMMERCIAUX" Relationship="Self.FK_ACHETEURS_COMMERCIAUX" FromRole="ACHETEURS" ToRole="COMMERCIAUX" />
+          <NavigationProperty Name="VILLES" Relationship="Self.FK_ACHETEURS_VILLES" FromRole="ACHETEURS" ToRole="VILLES" />
+          <NavigationProperty Name="SOUHAITS" Relationship="Self.FK_SOUHAITS_ACHETEURS" FromRole="ACHETEURS" ToRole="SOUHAITS" />
+        </EntityType>
+        <EntityType Name="BIENS">
+          <Key>
+            <PropertyRef Name="NUMERO_BIEN" />
+          </Key>
+          <Property Name="NUMERO_BIEN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUMERO_VILLE" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_VENDEUR" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_STATUT_BIEN" Type="Int16" Nullable="false" />
+          <Property Name="SURFACE_HABITABLE" Type="Int32" Nullable="false" />
+          <Property Name="SURFACE_PARCELLE" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_PIECE" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_CHAMBRE" Type="Int32" />
+          <Property Name="NOMBRE_SDB" Type="Int32" />
+          <Property Name="GARAGE" Type="Boolean" />
+          <Property Name="CAVE" Type="Boolean" />
+          <Property Name="PRIX_VENTE" Type="Int32" Nullable="false" />
+          <Property Name="ADRESSE_BIEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE_MISE_EN_VENTE" Type="DateTime" Precision="3" />
+          <Property Name="COMMENTAIRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="STATUT_BIEN" Relationship="Self.FK_BIENS_STATUT_BIEN" FromRole="BIENS" ToRole="STATUT_BIEN" />
+          <NavigationProperty Name="VENDEURS" Relationship="Self.FK_BIENS_VENDEURS" FromRole="BIENS" ToRole="VENDEURS" />
+          <NavigationProperty Name="VILLES" Relationship="Self.FK_BIENS_VILLES" FromRole="BIENS" ToRole="VILLES" />
+          <NavigationProperty Name="PROPOSITIONS" Relationship="Self.FK_PROPOSITIONS_BIENS" FromRole="BIENS" ToRole="PROPOSITIONS" />
+        </EntityType>
+        <EntityType Name="COMMERCIAUX">
+          <Key>
+            <PropertyRef Name="NUMERO_COMMERCIAL" />
+          </Key>
+          <Property Name="NUMERO_COMMERCIAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUMERO_STATUT_COMMERCIAL" Type="Int16" Nullable="false" />
+          <Property Name="NOM_COMMERCIAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENOM_COMMERCIAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE_MOBILE_PRO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE_PRIVE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="EMAIL_COMMERCIAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOGIN" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="PASS" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ACHETEURS" Relationship="Self.FK_ACHETEURS_COMMERCIAUX" FromRole="COMMERCIAUX" ToRole="ACHETEURS" />
+          <NavigationProperty Name="STATUT_COMMERCIAUX" Relationship="Self.FK_COMMERCIAUX_STATUT_COMMERCIAUX" FromRole="COMMERCIAUX" ToRole="STATUT_COMMERCIAUX" />
+        </EntityType>
+        <EntityType Name="PROPOSITIONS">
+          <Key>
+            <PropertyRef Name="NUMERO_PROPOSITION" />
+          </Key>
+          <Property Name="NUMERO_PROPOSITION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUMERO_SOUHAIT" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_BIEN" Type="Int32" Nullable="false" />
+          <Property Name="DATE_PROPOSITION_VISITE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="BIENS" Relationship="Self.FK_PROPOSITIONS_BIENS" FromRole="PROPOSITIONS" ToRole="BIENS" />
+          <NavigationProperty Name="SOUHAITS" Relationship="Self.FK_PROPOSITIONS_SOUHAITS" FromRole="PROPOSITIONS" ToRole="SOUHAITS" />
+          <NavigationProperty Name="VISITES" Relationship="Self.FK_VISITES_PROPOSITIONS" FromRole="PROPOSITIONS" ToRole="VISITES" />
+        </EntityType>
+        <EntityType Name="SOUHAITS">
+          <Key>
+            <PropertyRef Name="NUMERO_SOUHAIT" />
+          </Key>
+          <Property Name="NUMERO_SOUHAIT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUMERO_ACHETEUR" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_VILLE" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_STATUT_SOUHAIT" Type="Int16" Nullable="false" />
+          <Property Name="SURFACE_HABITABLE_MINIMALE" Type="Int32" />
+          <Property Name="SURFACE_PARCELLE_MINIMALE" Type="Int32" />
+          <Property Name="NOMBRE_PIECE_MINIMALE" Type="Int32" Nullable="false" />
+          <Property Name="PRIX_MAXIMAL" Type="Int32" Nullable="false" />
+          <Property Name="NBCHAMBREMINI" Type="Int16" />
+          <Property Name="NBSDBMINI" Type="Int16" />
+          <NavigationProperty Name="ACHETEURS" Relationship="Self.FK_SOUHAITS_ACHETEURS" FromRole="SOUHAITS" ToRole="ACHETEURS" />
+          <NavigationProperty Name="PROPOSITIONS" Relationship="Self.FK_PROPOSITIONS_SOUHAITS" FromRole="SOUHAITS" ToRole="PROPOSITIONS" />
+          <NavigationProperty Name="STATUT_SOUHAIT" Relationship="Self.FK_SOUHAITS_STATUT_SOUHAIT" FromRole="SOUHAITS" ToRole="STATUT_SOUHAIT" />
+          <NavigationProperty Name="VILLES" Relationship="Self.FK_SOUHAITS_VILLES" FromRole="SOUHAITS" ToRole="VILLES" />
+        </EntityType>
+        <EntityType Name="STATUT_BIEN">
+          <Key>
+            <PropertyRef Name="NUMERO_STATUT_BIEN" />
+          </Key>
+          <Property Name="NUMERO_STATUT_BIEN" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_STATUT_BIEN" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BIENS" Relationship="Self.FK_BIENS_STATUT_BIEN" FromRole="STATUT_BIEN" ToRole="BIENS" />
+        </EntityType>
+        <EntityType Name="STATUT_COMMERCIAUX">
+          <Key>
+            <PropertyRef Name="NUMERO_STATUT_COMMERCIAL" />
+          </Key>
+          <Property Name="NUMERO_STATUT_COMMERCIAL" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_STATUT_COMMERCIAUX" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="COMMERCIAUX" Relationship="Self.FK_COMMERCIAUX_STATUT_COMMERCIAUX" FromRole="STATUT_COMMERCIAUX" ToRole="COMMERCIAUX" />
+        </EntityType>
+        <EntityType Name="STATUT_SOUHAIT">
+          <Key>
+            <PropertyRef Name="NUMERO_STATUT_SOUHAIT" />
+          </Key>
+          <Property Name="NUMERO_STATUT_SOUHAIT" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_STATUT_SOUHAIT" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SOUHAITS" Relationship="Self.FK_SOUHAITS_STATUT_SOUHAIT" FromRole="STATUT_SOUHAIT" ToRole="SOUHAITS" />
+        </EntityType>
+        <EntityType Name="VENDEURS">
+          <Key>
+            <PropertyRef Name="NUMERO_VENDEUR" />
+          </Key>
+          <Property Name="NUMERO_VENDEUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUMERO_VILLE" Type="Int32" Nullable="false" />
+          <Property Name="NOM_VENDEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENOM_VENDEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADRESSE_VENDEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE_MOBILE_VENDEUR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE_FIXE_VENDEUR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="EMAIL_VENDEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BIENS" Relationship="Self.FK_BIENS_VENDEURS" FromRole="VENDEURS" ToRole="BIENS" />
+          <NavigationProperty Name="VILLES" Relationship="Self.FK_VENDEURS_VILLES" FromRole="VENDEURS" ToRole="VILLES" />
+        </EntityType>
+        <EntityType Name="VILLES">
+          <Key>
+            <PropertyRef Name="NUMERO_VILLE" />
+          </Key>
+          <Property Name="NUMERO_VILLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_VILLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_POSTAL_VILLE" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ACHETEURS" Relationship="Self.FK_ACHETEURS_VILLES" FromRole="VILLES" ToRole="ACHETEURS" />
+          <NavigationProperty Name="BIENS" Relationship="Self.FK_BIENS_VILLES" FromRole="VILLES" ToRole="BIENS" />
+          <NavigationProperty Name="SOUHAITS" Relationship="Self.FK_SOUHAITS_VILLES" FromRole="VILLES" ToRole="SOUHAITS" />
+          <NavigationProperty Name="VENDEURS" Relationship="Self.FK_VENDEURS_VILLES" FromRole="VILLES" ToRole="VENDEURS" />
+        </EntityType>
+        <EntityType Name="VISITES">
+          <Key>
+            <PropertyRef Name="NUMERO_VISITE" />
+          </Key>
+          <Property Name="NUMERO_VISITE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUMERO_PROPOSITION" Type="Int32" Nullable="false" />
+          <Property Name="DATE_VISITE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PROPOSITIONS" Relationship="Self.FK_VISITES_PROPOSITIONS" FromRole="VISITES" ToRole="PROPOSITIONS" />
+        </EntityType>
+        <Association Name="FK_ACHETEURS_COMMERCIAUX">
+          <End Role="COMMERCIAUX" Type="Self.COMMERCIAUX" Multiplicity="1" />
+          <End Role="ACHETEURS" Type="Self.ACHETEURS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMERCIAUX">
+              <PropertyRef Name="NUMERO_COMMERCIAL" />
+            </Principal>
+            <Dependent Role="ACHETEURS">
+              <PropertyRef Name="NUMERO_COMMERCIAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ACHETEURS_VILLES">
+          <End Role="VILLES" Type="Self.VILLES" Multiplicity="1" />
+          <End Role="ACHETEURS" Type="Self.ACHETEURS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VILLES">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Principal>
+            <Dependent Role="ACHETEURS">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOUHAITS_ACHETEURS">
+          <End Role="ACHETEURS" Type="Self.ACHETEURS" Multiplicity="1" />
+          <End Role="SOUHAITS" Type="Self.SOUHAITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACHETEURS">
+              <PropertyRef Name="NUMERO_ACHETEUR" />
+            </Principal>
+            <Dependent Role="SOUHAITS">
+              <PropertyRef Name="NUMERO_ACHETEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENS_STATUT_BIEN">
+          <End Role="STATUT_BIEN" Type="Self.STATUT_BIEN" Multiplicity="1" />
+          <End Role="BIENS" Type="Self.BIENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUT_BIEN">
+              <PropertyRef Name="NUMERO_STATUT_BIEN" />
+            </Principal>
+            <Dependent Role="BIENS">
+              <PropertyRef Name="NUMERO_STATUT_BIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENS_VENDEURS">
+          <End Role="VENDEURS" Type="Self.VENDEURS" Multiplicity="1" />
+          <End Role="BIENS" Type="Self.BIENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENDEURS">
+              <PropertyRef Name="NUMERO_VENDEUR" />
+            </Principal>
+            <Dependent Role="BIENS">
+              <PropertyRef Name="NUMERO_VENDEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENS_VILLES">
+          <End Role="VILLES" Type="Self.VILLES" Multiplicity="1" />
+          <End Role="BIENS" Type="Self.BIENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VILLES">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Principal>
+            <Dependent Role="BIENS">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROPOSITIONS_BIENS">
+          <End Role="BIENS" Type="Self.BIENS" Multiplicity="1" />
+          <End Role="PROPOSITIONS" Type="Self.PROPOSITIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BIENS">
+              <PropertyRef Name="NUMERO_BIEN" />
+            </Principal>
+            <Dependent Role="PROPOSITIONS">
+              <PropertyRef Name="NUMERO_BIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMERCIAUX_STATUT_COMMERCIAUX">
+          <End Role="STATUT_COMMERCIAUX" Type="Self.STATUT_COMMERCIAUX" Multiplicity="1" />
+          <End Role="COMMERCIAUX" Type="Self.COMMERCIAUX" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUT_COMMERCIAUX">
+              <PropertyRef Name="NUMERO_STATUT_COMMERCIAL" />
+            </Principal>
+            <Dependent Role="COMMERCIAUX">
+              <PropertyRef Name="NUMERO_STATUT_COMMERCIAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROPOSITIONS_SOUHAITS">
+          <End Role="SOUHAITS" Type="Self.SOUHAITS" Multiplicity="1" />
+          <End Role="PROPOSITIONS" Type="Self.PROPOSITIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOUHAITS">
+              <PropertyRef Name="NUMERO_SOUHAIT" />
+            </Principal>
+            <Dependent Role="PROPOSITIONS">
+              <PropertyRef Name="NUMERO_SOUHAIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VISITES_PROPOSITIONS">
+          <End Role="PROPOSITIONS" Type="Self.PROPOSITIONS" Multiplicity="1" />
+          <End Role="VISITES" Type="Self.VISITES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROPOSITIONS">
+              <PropertyRef Name="NUMERO_PROPOSITION" />
+            </Principal>
+            <Dependent Role="VISITES">
+              <PropertyRef Name="NUMERO_PROPOSITION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOUHAITS_STATUT_SOUHAIT">
+          <End Role="STATUT_SOUHAIT" Type="Self.STATUT_SOUHAIT" Multiplicity="1" />
+          <End Role="SOUHAITS" Type="Self.SOUHAITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUT_SOUHAIT">
+              <PropertyRef Name="NUMERO_STATUT_SOUHAIT" />
+            </Principal>
+            <Dependent Role="SOUHAITS">
+              <PropertyRef Name="NUMERO_STATUT_SOUHAIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOUHAITS_VILLES">
+          <End Role="VILLES" Type="Self.VILLES" Multiplicity="1" />
+          <End Role="SOUHAITS" Type="Self.SOUHAITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VILLES">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Principal>
+            <Dependent Role="SOUHAITS">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENDEURS_VILLES">
+          <End Role="VILLES" Type="Self.VILLES" Multiplicity="1" />
+          <End Role="VENDEURS" Type="Self.VENDEURS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VILLES">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Principal>
+            <Dependent Role="VENDEURS">
+              <PropertyRef Name="NUMERO_VILLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Immobilly_Groupe_SolveigEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACHETEURS" EntityType="Self.ACHETEURS" />
+          <EntitySet Name="BIENS" EntityType="Self.BIENS" />
+          <EntitySet Name="COMMERCIAUX" EntityType="Self.COMMERCIAUX" />
+          <EntitySet Name="PROPOSITIONS" EntityType="Self.PROPOSITIONS" />
+          <EntitySet Name="SOUHAITS" EntityType="Self.SOUHAITS" />
+          <EntitySet Name="STATUT_BIEN" EntityType="Self.STATUT_BIEN" />
+          <EntitySet Name="STATUT_COMMERCIAUX" EntityType="Self.STATUT_COMMERCIAUX" />
+          <EntitySet Name="STATUT_SOUHAIT" EntityType="Self.STATUT_SOUHAIT" />
+          <EntitySet Name="VENDEURS" EntityType="Self.VENDEURS" />
+          <EntitySet Name="VILLES" EntityType="Self.VILLES" />
+          <EntitySet Name="VISITES" EntityType="Self.VISITES" />
+          <AssociationSet Name="FK_ACHETEURS_COMMERCIAUX" Association="Self.FK_ACHETEURS_COMMERCIAUX">
+            <End Role="COMMERCIAUX" EntitySet="COMMERCIAUX" />
+            <End Role="ACHETEURS" EntitySet="ACHETEURS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ACHETEURS_VILLES" Association="Self.FK_ACHETEURS_VILLES">
+            <End Role="VILLES" EntitySet="VILLES" />
+            <End Role="ACHETEURS" EntitySet="ACHETEURS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOUHAITS_ACHETEURS" Association="Self.FK_SOUHAITS_ACHETEURS">
+            <End Role="ACHETEURS" EntitySet="ACHETEURS" />
+            <End Role="SOUHAITS" EntitySet="SOUHAITS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENS_STATUT_BIEN" Association="Self.FK_BIENS_STATUT_BIEN">
+            <End Role="STATUT_BIEN" EntitySet="STATUT_BIEN" />
+            <End Role="BIENS" EntitySet="BIENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENS_VENDEURS" Association="Self.FK_BIENS_VENDEURS">
+            <End Role="VENDEURS" EntitySet="VENDEURS" />
+            <End Role="BIENS" EntitySet="BIENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENS_VILLES" Association="Self.FK_BIENS_VILLES">
+            <End Role="VILLES" EntitySet="VILLES" />
+            <End Role="BIENS" EntitySet="BIENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPOSITIONS_BIENS" Association="Self.FK_PROPOSITIONS_BIENS">
+            <End Role="BIENS" EntitySet="BIENS" />
+            <End Role="PROPOSITIONS" EntitySet="PROPOSITIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMERCIAUX_STATUT_COMMERCIAUX" Association="Self.FK_COMMERCIAUX_STATUT_COMMERCIAUX">
+            <End Role="STATUT_COMMERCIAUX" EntitySet="STATUT_COMMERCIAUX" />
+            <End Role="COMMERCIAUX" EntitySet="COMMERCIAUX" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROPOSITIONS_SOUHAITS" Association="Self.FK_PROPOSITIONS_SOUHAITS">
+            <End Role="SOUHAITS" EntitySet="SOUHAITS" />
+            <End Role="PROPOSITIONS" EntitySet="PROPOSITIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VISITES_PROPOSITIONS" Association="Self.FK_VISITES_PROPOSITIONS">
+            <End Role="PROPOSITIONS" EntitySet="PROPOSITIONS" />
+            <End Role="VISITES" EntitySet="VISITES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOUHAITS_STATUT_SOUHAIT" Association="Self.FK_SOUHAITS_STATUT_SOUHAIT">
+            <End Role="STATUT_SOUHAIT" EntitySet="STATUT_SOUHAIT" />
+            <End Role="SOUHAITS" EntitySet="SOUHAITS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOUHAITS_VILLES" Association="Self.FK_SOUHAITS_VILLES">
+            <End Role="VILLES" EntitySet="VILLES" />
+            <End Role="SOUHAITS" EntitySet="SOUHAITS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENDEURS_VILLES" Association="Self.FK_VENDEURS_VILLES">
+            <End Role="VILLES" EntitySet="VILLES" />
+            <End Role="VENDEURS" EntitySet="VENDEURS" />
+          </AssociationSet>
+          <EntitySet Name="vueVisite" EntityType="Immobilly_Groupe_SolveigModel.vueVisite" />
+        </EntityContainer>
+        <EntityType Name="vueVisite">
+          <Key>
+            <PropertyRef Name="NUMERO_BIEN" />
+            <PropertyRef Name="DATE_PROPOSITION_VISITE" />
+            <PropertyRef Name="bienVisite" />
+          </Key>
+          <Property Name="acheteur" Type="String" MaxLength="61" FixedLength="false" Unicode="false" />
+          <Property Name="commercial" Type="String" MaxLength="61" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_BIEN" Type="Int32" Nullable="false" />
+          <Property Name="villeBien" Type="String" MaxLength="38" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_PROPOSITION_VISITE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="bienVisite" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_VISITE" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Immobilly_Groupe_SolveigModelStoreContainer" CdmEntityContainer="Immobilly_Groupe_SolveigEntities">
+          <EntitySetMapping Name="ACHETEURS">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.ACHETEURS">
+              <MappingFragment StoreEntitySet="ACHETEURS">
+                <ScalarProperty Name="NUMERO_ACHETEUR" ColumnName="NUMERO_ACHETEUR" />
+                <ScalarProperty Name="NUMERO_VILLE" ColumnName="NUMERO_VILLE" />
+                <ScalarProperty Name="NUMERO_COMMERCIAL" ColumnName="NUMERO_COMMERCIAL" />
+                <ScalarProperty Name="NOM_ACHETEUR" ColumnName="NOM_ACHETEUR" />
+                <ScalarProperty Name="PRENOM_ACHETEUR" ColumnName="PRENOM_ACHETEUR" />
+                <ScalarProperty Name="ADRESSE_ACHETEUR" ColumnName="ADRESSE_ACHETEUR" />
+                <ScalarProperty Name="TELEPHONE_PRINCIPAL_ACHETEUR" ColumnName="TELEPHONE_PRINCIPAL_ACHETEUR" />
+                <ScalarProperty Name="TELEPHONE_SECONDAIRE_ACHETEUR" ColumnName="TELEPHONE_SECONDAIRE_ACHETEUR" />
+                <ScalarProperty Name="EMAIL_ACHETEUR" ColumnName="EMAIL_ACHETEUR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BIENS">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.BIENS">
+              <MappingFragment StoreEntitySet="BIENS">
+                <ScalarProperty Name="NUMERO_BIEN" ColumnName="NUMERO_BIEN" />
+                <ScalarProperty Name="NUMERO_VILLE" ColumnName="NUMERO_VILLE" />
+                <ScalarProperty Name="NUMERO_VENDEUR" ColumnName="NUMERO_VENDEUR" />
+                <ScalarProperty Name="NUMERO_STATUT_BIEN" ColumnName="NUMERO_STATUT_BIEN" />
+                <ScalarProperty Name="SURFACE_HABITABLE" ColumnName="SURFACE_HABITABLE" />
+                <ScalarProperty Name="SURFACE_PARCELLE" ColumnName="SURFACE_PARCELLE" />
+                <ScalarProperty Name="NOMBRE_PIECE" ColumnName="NOMBRE_PIECE" />
+                <ScalarProperty Name="NOMBRE_CHAMBRE" ColumnName="NOMBRE_CHAMBRE" />
+                <ScalarProperty Name="NOMBRE_SDB" ColumnName="NOMBRE_SDB" />
+                <ScalarProperty Name="GARAGE" ColumnName="GARAGE" />
+                <ScalarProperty Name="CAVE" ColumnName="CAVE" />
+                <ScalarProperty Name="PRIX_VENTE" ColumnName="PRIX_VENTE" />
+                <ScalarProperty Name="ADRESSE_BIEN" ColumnName="ADRESSE_BIEN" />
+                <ScalarProperty Name="DATE_MISE_EN_VENTE" ColumnName="DATE_MISE_EN_VENTE" />
+                <ScalarProperty Name="COMMENTAIRE" ColumnName="COMMENTAIRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMERCIAUX">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.COMMERCIAUX">
+              <MappingFragment StoreEntitySet="COMMERCIAUX">
+                <ScalarProperty Name="NUMERO_COMMERCIAL" ColumnName="NUMERO_COMMERCIAL" />
+                <ScalarProperty Name="NUMERO_STATUT_COMMERCIAL" ColumnName="NUMERO_STATUT_COMMERCIAL" />
+                <ScalarProperty Name="NOM_COMMERCIAL" ColumnName="NOM_COMMERCIAL" />
+                <ScalarProperty Name="PRENOM_COMMERCIAL" ColumnName="PRENOM_COMMERCIAL" />
+                <ScalarProperty Name="TELEPHONE_MOBILE_PRO" ColumnName="TELEPHONE_MOBILE_PRO" />
+                <ScalarProperty Name="TELEPHONE_PRIVE" ColumnName="TELEPHONE_PRIVE" />
+                <ScalarProperty Name="EMAIL_COMMERCIAL" ColumnName="EMAIL_COMMERCIAL" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROPOSITIONS">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.PROPOSITIONS">
+              <MappingFragment StoreEntitySet="PROPOSITIONS">
+                <ScalarProperty Name="NUMERO_PROPOSITION" ColumnName="NUMERO_PROPOSITION" />
+                <ScalarProperty Name="NUMERO_SOUHAIT" ColumnName="NUMERO_SOUHAIT" />
+                <ScalarProperty Name="NUMERO_BIEN" ColumnName="NUMERO_BIEN" />
+                <ScalarProperty Name="DATE_PROPOSITION_VISITE" ColumnName="DATE_PROPOSITION_VISITE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOUHAITS">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.SOUHAITS">
+              <MappingFragment StoreEntitySet="SOUHAITS">
+                <ScalarProperty Name="NUMERO_SOUHAIT" ColumnName="NUMERO_SOUHAIT" />
+                <ScalarProperty Name="NUMERO_ACHETEUR" ColumnName="NUMERO_ACHETEUR" />
+                <ScalarProperty Name="NUMERO_VILLE" ColumnName="NUMERO_VILLE" />
+                <ScalarProperty Name="NUMERO_STATUT_SOUHAIT" ColumnName="NUMERO_STATUT_SOUHAIT" />
+                <ScalarProperty Name="SURFACE_HABITABLE_MINIMALE" ColumnName="SURFACE_HABITABLE_MINIMALE" />
+                <ScalarProperty Name="SURFACE_PARCELLE_MINIMALE" ColumnName="SURFACE_PARCELLE_MINIMALE" />
+                <ScalarProperty Name="NOMBRE_PIECE_MINIMALE" ColumnName="NOMBRE_PIECE_MINIMALE" />
+                <ScalarProperty Name="PRIX_MAXIMAL" ColumnName="PRIX_MAXIMAL" />
+                <ScalarProperty Name="NBCHAMBREMINI" ColumnName="NBCHAMBREMINI" />
+                <ScalarProperty Name="NBSDBMINI" ColumnName="NBSDBMINI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATUT_BIEN">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.STATUT_BIEN">
+              <MappingFragment StoreEntitySet="STATUT_BIEN">
+                <ScalarProperty Name="NUMERO_STATUT_BIEN" ColumnName="NUMERO_STATUT_BIEN" />
+                <ScalarProperty Name="LIBELLE_STATUT_BIEN" ColumnName="LIBELLE_STATUT_BIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATUT_COMMERCIAUX">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.STATUT_COMMERCIAUX">
+              <MappingFragment StoreEntitySet="STATUT_COMMERCIAUX">
+                <ScalarProperty Name="NUMERO_STATUT_COMMERCIAL" ColumnName="NUMERO_STATUT_COMMERCIAL" />
+                <ScalarProperty Name="LIBELLE_STATUT_COMMERCIAUX" ColumnName="LIBELLE_STATUT_COMMERCIAUX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATUT_SOUHAIT">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.STATUT_SOUHAIT">
+              <MappingFragment StoreEntitySet="STATUT_SOUHAIT">
+                <ScalarProperty Name="NUMERO_STATUT_SOUHAIT" ColumnName="NUMERO_STATUT_SOUHAIT" />
+                <ScalarProperty Name="LIBELLE_STATUT_SOUHAIT" ColumnName="LIBELLE_STATUT_SOUHAIT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENDEURS">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.VENDEURS">
+              <MappingFragment StoreEntitySet="VENDEURS">
+                <ScalarProperty Name="NUMERO_VENDEUR" ColumnName="NUMERO_VENDEUR" />
+                <ScalarProperty Name="NUMERO_VILLE" ColumnName="NUMERO_VILLE" />
+                <ScalarProperty Name="NOM_VENDEUR" ColumnName="NOM_VENDEUR" />
+                <ScalarProperty Name="PRENOM_VENDEUR" ColumnName="PRENOM_VENDEUR" />
+                <ScalarProperty Name="ADRESSE_VENDEUR" ColumnName="ADRESSE_VENDEUR" />
+                <ScalarProperty Name="TELEPHONE_MOBILE_VENDEUR" ColumnName="TELEPHONE_MOBILE_VENDEUR" />
+                <ScalarProperty Name="TELEPHONE_FIXE_VENDEUR" ColumnName="TELEPHONE_FIXE_VENDEUR" />
+                <ScalarProperty Name="EMAIL_VENDEUR" ColumnName="EMAIL_VENDEUR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VILLES">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.VILLES">
+              <MappingFragment StoreEntitySet="VILLES">
+                <ScalarProperty Name="NUMERO_VILLE" ColumnName="NUMERO_VILLE" />
+                <ScalarProperty Name="NOM_VILLE" ColumnName="NOM_VILLE" />
+                <ScalarProperty Name="CODE_POSTAL_VILLE" ColumnName="CODE_POSTAL_VILLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VISITES">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.VISITES">
+              <MappingFragment StoreEntitySet="VISITES">
+                <ScalarProperty Name="NUMERO_VISITE" ColumnName="NUMERO_VISITE" />
+                <ScalarProperty Name="NUMERO_PROPOSITION" ColumnName="NUMERO_PROPOSITION" />
+                <ScalarProperty Name="DATE_VISITE" ColumnName="DATE_VISITE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vueVisite">
+            <EntityTypeMapping TypeName="Immobilly_Groupe_SolveigModel.vueVisite">
+              <MappingFragment StoreEntitySet="vueVisite">
+                <ScalarProperty Name="DATE_VISITE" ColumnName="DATE_VISITE" />
+                <ScalarProperty Name="bienVisite" ColumnName="bienVisite" />
+                <ScalarProperty Name="DATE_PROPOSITION_VISITE" ColumnName="DATE_PROPOSITION_VISITE" />
+                <ScalarProperty Name="villeBien" ColumnName="villeBien" />
+                <ScalarProperty Name="NUMERO_BIEN" ColumnName="NUMERO_BIEN" />
+                <ScalarProperty Name="commercial" ColumnName="commercial" />
+                <ScalarProperty Name="acheteur" ColumnName="acheteur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
